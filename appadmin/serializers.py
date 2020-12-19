@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import FoodCategory, FoodDetails, DeliveryPerson, CustOrderStatus
+from .models import FoodCategory, FoodDetails, DeliveryPerson, CustOrderStatus, CustOrderSelection
 
 
 class FoodCategorySerializer(serializers.ModelSerializer):
@@ -27,3 +27,8 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustOrderStatus
         fields = ('id','cust_id','delivery_person_id','checkout_time','estimated_time','order_status','order_address','bill_amount')
+
+class OrderSelectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustOrderSelection
+        fields = ('order_id','food_id','food_qty')

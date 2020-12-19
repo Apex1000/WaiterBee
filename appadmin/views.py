@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView,ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from .serializers import FoodCategorySerializer, FoodDetailsSerializer, DeliveryPersonSerializer, ViewMenuSerializer, OrderSerializer
-from .models import Employee, FoodCategory, FoodDetails, DeliveryPerson, CustOrderStatus
+from rest_framework.generics import ListAPIView,UpdateAPIView,DestroyAPIView,ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from .serializers import FoodCategorySerializer, FoodDetailsSerializer, DeliveryPersonSerializer, ViewMenuSerializer, OrderSerializer,OrderSelectionSerializer
+from .models import FoodCategory, FoodDetails, DeliveryPerson, CustOrderStatus, CustOrderSelection
 from rest_framework import permissions
 
 # Create your views here.
@@ -70,3 +70,25 @@ class OrderListAPIView(ListCreateAPIView):
     # permission_classes = (permissions.IsAuthenticated,)
     def get_queryset(self):
         return self.queryset.filter(cust_id=1)
+
+class OrderSelectionListAPIView(ListCreateAPIView):
+    serializer_class = OrderSelectionSerializer
+    queryset = CustOrderSelection.objects.all()
+    # permission_classes = (permissions.IsAuthenticated,)
+    def get_queryset(self):
+        return self.queryset.filter()
+
+class DeleteOrderSelectionListAPIView(DestroyAPIView,UpdateAPIView):
+    serializer_class = OrderSelectionSerializer
+    queryset = CustOrderSelection.objects.all()
+    # permission_classes = (permissions.IsAuthenticated,)
+    lookup_field = "order_id"
+    def get_queryset(self):
+        return self.queryset.filter()
+
+class CheckOut(UpdateAPIView):
+    serializer_class = OrderSerializer
+    queryset = CustOrderStatus.objects.all()
+    # permission_classes = (permissions.IsAuthenticated,)
+    def get_queryset(self):
+        return self.queryset.filter()
