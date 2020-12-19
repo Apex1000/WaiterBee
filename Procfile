@@ -1,1 +1,3 @@
-web: gunicorn bootcamp.wsgi --log-file -
+release: python manage.py makemigrations
+release: python manage.py migrate
+web: gunicorn WaiterBee.wsgi
