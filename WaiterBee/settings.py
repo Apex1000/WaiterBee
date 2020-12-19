@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'orders',
     'social_auth',
-    'FoodItems'
+    'appadmin',
 ]
 
 MIDDLEWARE = [

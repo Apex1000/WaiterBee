@@ -41,5 +41,5 @@ urlpatterns = [
 
     path('orders/',include('orders.urls')),
     path('auth/',include('social_auth.urls')),
-    path('items/',include('FoodItems.urls')),
+    path('',include('appadmin.urls')),
 ]
